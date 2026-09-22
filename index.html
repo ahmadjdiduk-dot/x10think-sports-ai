@@ -1,0 +1,2781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>X10THINK SPORTS AI</title>
+
+<meta name="description"
+      content="X10THINK SPORTS AI - AI Football Prediction & Match Analysis">
+
+<style>
+
+/* =========================================================
+   X10THINK SPORTS AI
+   FRONT-END PROTOTYPE
+   DEMO DATA - NOT LIVE
+   ========================================================= */
+
+:root {
+    --bg: #070b12;
+    --bg-soft: #0d131d;
+    --panel: #111925;
+    --panel-2: #151f2d;
+    --border: rgba(255,255,255,0.08);
+
+    --text: #f4f7fb;
+    --muted: #8d9aaa;
+
+    --green: #21e6a3;
+    --green-soft: rgba(33,230,163,0.12);
+
+    --blue: #42a5ff;
+    --blue-soft: rgba(66,165,255,0.12);
+
+    --yellow: #ffc857;
+    --yellow-soft: rgba(255,200,87,0.12);
+
+    --red: #ff5573;
+    --red-soft: rgba(255,85,115,0.12);
+
+    --cyan: #35d9ff;
+
+    --radius: 18px;
+    --shadow: 0 18px 50px rgba(0,0,0,0.35);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(33,230,163,0.08), transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(66,165,255,0.08), transparent 30%),
+        var(--bg);
+
+    color: var(--text);
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    min-height: 100vh;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    background: rgba(7,11,18,0.88);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+    width: min(1400px, calc(100% - 32px));
+    margin: auto;
+
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.logo {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 900;
+    font-size: 15px;
+
+    color: #06120e;
+
+    background:
+        linear-gradient(135deg,
+            var(--green),
+            var(--cyan));
+
+    box-shadow:
+        0 0 30px rgba(33,230,163,0.25);
+}
+
+.brand-title {
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+}
+
+.brand-subtitle {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.header-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 12px;
+
+    border: 1px solid rgba(255,200,87,0.22);
+    background: var(--yellow-soft);
+
+    border-radius: 999px;
+
+    color: var(--yellow);
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.3px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--yellow);
+
+    box-shadow:
+        0 0 12px var(--yellow);
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+main {
+    width: min(1400px, calc(100% - 32px));
+    margin: auto;
+    padding: 38px 0 70px;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: 22px;
+
+    margin-bottom: 28px;
+}
+
+.hero-main {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 230px;
+
+    padding: 34px;
+
+    border: 1px solid var(--border);
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(33,230,163,0.10),
+            rgba(66,165,255,0.05) 50%,
+            rgba(255,255,255,0.015)
+        );
+
+    box-shadow: var(--shadow);
+}
+
+.hero-main::after {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    right: -100px;
+    top: -120px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(33,230,163,0.15),
+            transparent 65%
+        );
+
+    pointer-events: none;
+}
+
+.eyebrow {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 900;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 5vw, 55px);
+    line-height: 0.98;
+
+    max-width: 750px;
+
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    color: var(--green);
+}
+
+.hero-text {
+    max-width: 700px;
+
+    margin-top: 17px;
+
+    color: var(--muted);
+
+    line-height: 1.65;
+    font-size: 14px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    margin-top: 24px;
+}
+
+.btn {
+    border: 0;
+    cursor: pointer;
+
+    padding: 11px 16px;
+
+    border-radius: 11px;
+
+    font-weight: 800;
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: var(--green);
+    color: #04120c;
+
+    box-shadow:
+        0 8px 25px rgba(33,230,163,0.18);
+}
+
+.btn-secondary {
+    background: rgba(255,255,255,0.05);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+}
+
+/* =========================================================
+   AI ENGINE CARD
+   ========================================================= */
+
+.engine-card {
+    border: 1px solid var(--border);
+    border-radius: 26px;
+
+    background: var(--panel);
+
+    padding: 24px;
+
+    box-shadow: var(--shadow);
+}
+
+.engine-title {
+    font-size: 12px;
+    font-weight: 900;
+
+    color: var(--muted);
+
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+
+    margin-bottom: 20px;
+}
+
+.engine-score {
+    display: flex;
+    align-items: flex-end;
+    gap: 7px;
+
+    margin-bottom: 15px;
+}
+
+.engine-score strong {
+    font-size: 45px;
+    line-height: 1;
+
+    color: var(--green);
+}
+
+.engine-score span {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.progress {
+    height: 7px;
+
+    background: rgba(255,255,255,0.06);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress > div {
+    height: 100%;
+    width: 91%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--green),
+            var(--cyan)
+        );
+
+    border-radius: inherit;
+}
+
+.engine-info {
+    margin-top: 16px;
+
+    display: grid;
+    gap: 9px;
+}
+
+.engine-row {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 12px;
+}
+
+.engine-row span:first-child {
+    color: var(--muted);
+}
+
+.good {
+    color: var(--green);
+}
+
+.warning {
+    color: var(--yellow);
+}
+
+/* =========================================================
+   FILTER BAR
+   ========================================================= */
+
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin: 35px 0 15px;
+
+    gap: 15px;
+}
+
+.section-heading h2 {
+    font-size: 21px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.filters {
+    display: flex;
+    gap: 8px;
+
+    overflow-x: auto;
+
+    padding-bottom: 4px;
+}
+
+.filter {
+    white-space: nowrap;
+
+    border: 1px solid var(--border);
+    background: var(--panel);
+
+    color: var(--muted);
+
+    padding: 9px 13px;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.filter.active {
+    color: #06120e;
+    background: var(--green);
+
+    border-color: var(--green);
+}
+
+/* =========================================================
+   MATCH GRID
+   ========================================================= */
+
+.matches {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+/* =========================================================
+   MATCH CARD
+   ========================================================= */
+
+.match-card {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 18px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        background 0.2s;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.match-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(33,230,163,0.35);
+
+    background: var(--panel-2);
+}
+
+.demo-label {
+    position: absolute;
+
+    top: 13px;
+    right: 13px;
+
+    font-size: 8px;
+    font-weight: 900;
+
+    color: var(--yellow);
+
+    background: var(--yellow-soft);
+
+    padding: 4px 7px;
+
+    border-radius: 5px;
+
+    letter-spacing: 0.6px;
+}
+
+.league {
+    color: var(--muted);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+
+    margin-bottom: 20px;
+}
+
+.match-time {
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-bottom: 17px;
+}
+
+.teams {
+    display: grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.team {
+    text-align: center;
+}
+
+.team-logo {
+    width: 47px;
+    height: 47px;
+
+    margin: auto auto 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid var(--border);
+
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.team-name {
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.vs {
+    color: var(--muted);
+
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.prediction-mini {
+    margin-top: 18px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 6px;
+}
+
+.mini-box {
+    background: rgba(255,255,255,0.035);
+
+    border: 1px solid rgba(255,255,255,0.05);
+
+    border-radius: 9px;
+
+    padding: 8px 5px;
+
+    text-align: center;
+}
+
+.mini-box span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    margin-bottom: 4px;
+}
+
+.mini-box strong {
+    font-size: 12px;
+}
+
+.mini-home strong {
+    color: var(--green);
+}
+
+.mini-draw strong {
+    color: var(--yellow);
+}
+
+.mini-away strong {
+    color: var(--red);
+}
+
+/* =========================================================
+   ANALYSIS MODAL
+   ========================================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    padding: 20px;
+
+    background: rgba(0,0,0,0.75);
+
+    backdrop-filter: blur(12px);
+
+    overflow-y: auto;
+}
+
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.modal-content {
+    width: min(1050px, 100%);
+
+    margin: 30px 0;
+
+    background: #0b111a;
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,0.6);
+
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 24px;
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.modal-subtitle {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-top: 4px;
+}
+
+.close-btn {
+    width: 35px;
+    height: 35px;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border);
+
+    background: rgba(255,255,255,0.04);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+.analysis-body {
+    padding: 24px;
+}
+
+/* =========================================================
+   ANALYSIS TOP
+   ========================================================= */
+
+.analysis-top {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1.5fr 1fr;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 20px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+}
+
+.big-team {
+    text-align: center;
+}
+
+.big-team-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: auto auto 10px;
+
+    border-radius: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid var(--border);
+
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.big-team-name {
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.analysis-center {
+    text-align: center;
+}
+
+.analysis-time {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-bottom: 13px;
+}
+
+.predicted-score {
+    font-size: 38px;
+    font-weight: 950;
+
+    letter-spacing: 2px;
+}
+
+.predicted-score span {
+    color: var(--muted);
+}
+
+/* =========================================================
+   STAT GRID
+   ========================================================= */
+
+.analysis-section {
+    margin-top: 22px;
+}
+
+.analysis-section-title {
+    font-size: 13px;
+
+    font-weight: 900;
+
+    margin-bottom: 12px;
+}
+
+.stat-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0,1fr));
+
+    gap: 10px;
+}
+
+.stat-card {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 15px;
+}
+
+.stat-card-title {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 9px;
+}
+
+.stat-card-value {
+    font-size: 22px;
+
+    font-weight: 900;
+}
+
+.stat-card-small {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 5px;
+}
+
+/* =========================================================
+   PROBABILITY BARS
+   ========================================================= */
+
+.probabilities {
+    display: grid;
+
+    gap: 12px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 17px;
+}
+
+.prob-row {
+    display: grid;
+
+    grid-template-columns:
+        105px 1fr 50px;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 11px;
+}
+
+.prob-label {
+    color: var(--muted);
+}
+
+.prob-track {
+    height: 8px;
+
+    background: rgba(255,255,255,0.06);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.prob-fill {
+    height: 100%;
+
+    border-radius: inherit;
+}
+
+.fill-green {
+    background: var(--green);
+}
+
+.fill-yellow {
+    background: var(--yellow);
+}
+
+.fill-red {
+    background: var(--red);
+}
+
+.fill-blue {
+    background: var(--blue);
+}
+
+.prob-value {
+    text-align: right;
+
+    font-weight: 900;
+}
+
+/* =========================================================
+   TWO COLUMN
+   ========================================================= */
+
+.two-column {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 14px;
+}
+
+.info-box {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 17px;
+}
+
+.info-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+
+    font-size: 11px;
+}
+
+.info-row:last-child {
+    border-bottom: 0;
+}
+
+.info-row span:first-child {
+    color: var(--muted);
+}
+
+/* =========================================================
+   SCORE GRID
+   ========================================================= */
+
+.score-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 8px;
+}
+
+.score-box {
+    padding: 12px 7px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,0.035);
+
+    border: 1px solid var(--border);
+}
+
+.score-box strong {
+    display: block;
+
+    font-size: 14px;
+}
+
+.score-box span {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 4px;
+
+    display: block;
+}
+
+/* =========================================================
+   NEWS
+   ========================================================= */
+
+.news-list {
+    display: grid;
+
+    gap: 9px;
+}
+
+.news-item {
+    padding: 13px;
+
+    border-radius: 11px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    font-size: 11px;
+}
+
+.news-item strong {
+    display: block;
+
+    margin-bottom: 5px;
+}
+
+.news-meta {
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    width: min(1400px, calc(100% - 32px));
+
+    margin: auto;
+
+    padding: 25px 0 40px;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.footer-brand {
+    color: var(--text);
+    font-weight: 900;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .matches {
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+
+    .header-inner {
+        min-height: 65px;
+    }
+
+    .brand-subtitle {
+        display: none;
+    }
+
+    .header-status {
+        font-size: 9px;
+        padding: 7px 9px;
+    }
+
+    main {
+        width: min(100% - 20px, 1400px);
+        padding-top: 20px;
+    }
+
+    .hero-main {
+        padding: 24px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .matches {
+        grid-template-columns: 1fr;
+    }
+
+    .analysis-top {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-grid {
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+    }
+
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+
+    .score-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    footer {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .brand-title {
+        font-size: 15px;
+    }
+
+    .header-status {
+        display: none;
+    }
+
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .prob-row {
+        grid-template-columns:
+            85px 1fr 42px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header>
+
+    <div class="header-inner">
+
+        <div class="brand">
+
+            <div class="logo">
+                X10
+            </div>
+
+            <div>
+                <div class="brand-title">
+                    X10THINK SPORTS AI
+                </div>
+
+                <div class="brand-subtitle">
+                    AI Football Prediction & Match Analysis
+                </div>
+            </div>
+
+        </div>
+
+        <div class="header-status">
+
+            <span class="status-dot"></span>
+
+            DEMO MODE — NOT LIVE
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-main">
+
+            <div class="eyebrow">
+                X10THINK INTELLIGENCE ENGINE
+            </div>
+
+            <h1>
+                Football analysis
+                <span>powered by data.</span>
+            </h1>
+
+            <p class="hero-text">
+                A multi-model football prediction platform combining
+                team strength, xG, form, lineups, player availability,
+                schedule, tactical information and machine learning.
+            </p>
+
+            <div class="hero-actions">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="scrollToMatches()">
+                    View Matches
+                </button>
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="showSystemInfo()">
+                    AI Engine
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ENGINE CARD -->
+
+        <div class="engine-card">
+
+            <div class="engine-title">
+                Data Quality
+            </div>
+
+            <div class="engine-score">
+
+                <strong>91%</strong>
+
+                <span>
+                    demo dataset
+                </span>
+
+            </div>
+
+            <div class="progress">
+                <div></div>
+            </div>
+
+            <div class="engine-info">
+
+                <div class="engine-row">
+                    <span>Team Data</span>
+                    <span class="good">Available</span>
+                </div>
+
+                <div class="engine-row">
+                    <span>Lineups</span>
+                    <span class="warning">Expected</span>
+                </div>
+
+                <div class="engine-row">
+                    <span>News Feed</span>
+                    <span class="warning">Demo</span>
+                </div>
+
+                <div class="engine-row">
+                    <span>Live API</span>
+                    <span class="warning">Not Connected</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MATCH SECTION -->
+
+    <section id="matches-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    Today's Matches
+                </h2>
+
+                <p>
+                    Demonstration interface — live football data will be connected later.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <button
+                class="filter active"
+                data-filter="all">
+                All
+            </button>
+
+            <button
+                class="filter"
+                data-filter="England">
+                🏴 England
+            </button>
+
+            <button
+                class="filter"
+                data-filter="Spain">
+                🇪🇸 Spain
+            </button>
+
+            <button
+                class="filter"
+                data-filter="Italy">
+                🇮🇹 Italy
+            </button>
+
+            <button
+                class="filter"
+                data-filter="Germany">
+                🇩🇪 Germany
+            </button>
+
+            <button
+                class="filter"
+                data-filter="France">
+                🇫🇷 France
+            </button>
+
+            <button
+                class="filter"
+                data-filter="Europe">
+                🏆 UEFA
+            </button>
+
+        </div>
+
+
+        <!-- MATCHES -->
+
+        <div
+            class="matches"
+            id="matches-container">
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     ANALYSIS MODAL
+     ========================================================= -->
+
+<div
+    class="modal"
+    id="analysis-modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+
+                <div
+                    class="modal-title"
+                    id="modal-title">
+                    Match Analysis
+                </div>
+
+                <div
+                    class="modal-subtitle"
+                    id="modal-subtitle">
+                    X10THINK SPORTS AI
+                </div>
+
+            </div>
+
+            <button
+                class="close-btn"
+                onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="analysis-body"
+            id="analysis-body">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer>
+
+    <div>
+
+        <div class="footer-brand">
+            X10THINK SPORTS AI
+        </div>
+
+        <div>
+            AI Football Prediction & Match Analysis
+        </div>
+
+    </div>
+
+    <div>
+        DEMO VERSION • Predictions are probabilities, not guarantees.
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   X10THINK SPORTS AI
+   DEMO DATA LAYER
+
+   IMPORTANT:
+   This object will later be replaced by live API data.
+
+   Do NOT place API keys here.
+   ========================================================= */
+
+
+const matches = [
+
+    {
+        id: 1,
+
+        country: "England",
+
+        league: "Premier League",
+
+        time: "15:00",
+
+        home: "Manchester City",
+
+        away: "Liverpool",
+
+        homeShort: "MCI",
+
+        awayShort: "LIV",
+
+        homeWin: 52,
+
+        draw: 25,
+
+        awayWin: 23,
+
+        bttsYes: 64,
+
+        bttsNo: 36,
+
+        over15: 84,
+
+        under15: 16,
+
+        over25: 63,
+
+        under25: 37,
+
+        over35: 39,
+
+        under35: 61,
+
+        homeScore: 2.0,
+
+        awayScore: 1.3,
+
+        predictedScore: "2 – 1",
+
+        confidence: 78,
+
+        dataQuality: 91,
+
+        scores: [
+            ["2 – 1", 16],
+            ["1 – 1", 12],
+            ["2 – 0", 11],
+            ["1 – 0", 9],
+            ["2 – 2", 8]
+        ],
+
+        news: [
+            {
+                title: "Demo: Expected XI available",
+                meta: "Example source • Demo timestamp"
+            },
+            {
+                title: "Demo: One attacking player monitored",
+                meta: "Example source • Demo timestamp"
+            }
+        ],
+
+        factors: {
+            attack: "Home",
+            defence: "Away",
+            form: "Home",
+            homeAway: "Home",
+            squad: "Balanced",
+            schedule: "Balanced"
+        }
+    },
+
+
+    {
+        id: 2,
+
+        country: "Spain",
+
+        league: "La Liga",
+
+        time: "18:30",
+
+        home: "Real Madrid",
+
+        away: "Atlético Madrid",
+
+        homeShort: "RMA",
+
+        awayShort: "ATM",
+
+        homeWin: 55,
+
+        draw: 27,
+
+        awayWin: 18,
+
+        bttsYes: 51,
+
+        bttsNo: 49,
+
+        over15: 76,
+
+        under15: 24,
+
+        over25: 52,
+
+        under25: 48,
+
+        over35: 27,
+
+        under35: 73,
+
+        homeScore: 1.7,
+
+        awayScore: 0.9,
+
+        predictedScore: "2 – 1",
+
+        confidence: 81,
+
+        dataQuality: 94,
+
+        scores: [
+            ["2 – 1", 15],
+            ["1 – 0", 14],
+            ["1 – 1", 12],
+            ["2 – 0", 10],
+            ["0 – 0", 7]
+        ],
+
+        news: [
+            {
+                title: "Demo: Starting XI pending",
+                meta: "Example source • Demo timestamp"
+            },
+            {
+                title: "Demo: Squad availability monitored",
+                meta: "Example source • Demo timestamp"
+            }
+        ],
+
+        factors: {
+            attack: "Home",
+            defence: "Home",
+            form: "Home",
+            homeAway: "Home",
+            squad: "Home",
+            schedule: "Balanced"
+        }
+    },
+
+
+    {
+        id: 3,
+
+        country: "Italy",
+
+        league: "Serie A",
+
+        time: "20:45",
+
+        home: "Inter",
+
+        away: "Juventus",
+
+        homeShort: "INT",
+
+        awayShort: "JUV",
+
+        homeWin: 48,
+
+        draw: 29,
+
+        awayWin: 23,
+
+        bttsYes: 57,
+
+        bttsNo: 43,
+
+        over15: 73,
+
+        under15: 27,
+
+        over25: 48,
+
+        under25: 52,
+
+        over35: 25,
+
+        under35: 75,
+
+        homeScore: 1.5,
+
+        awayScore: 1.0,
+
+        predictedScore: "1 – 1",
+
+        confidence: 69,
+
+        dataQuality: 88,
+
+        scores: [
+            ["1 – 1", 17],
+            ["2 – 1", 13],
+            ["1 – 0", 12],
+            ["2 – 0", 8],
+            ["0 – 1", 7]
+        ],
+
+        news: [
+            {
+                title: "Demo: Defensive lineup information pending",
+                meta: "Example source • Demo timestamp"
+            },
+            {
+                title: "Demo: Rotation risk monitored",
+                meta: "Example source • Demo timestamp"
+            }
+        ],
+
+        factors: {
+            attack: "Home",
+            defence: "Balanced",
+            form: "Home",
+            homeAway: "Home",
+            squad: "Balanced",
+            schedule: "Away"
+        }
+    },
+
+
+    {
+        id: 4,
+
+        country: "Germany",
+
+        league: "Bundesliga",
+
+        time: "17:30",
+
+        home: "Bayern Munich",
+
+        away: "Dortmund",
+
+        homeShort: "FCB",
+
+        awayShort: "BVB",
+
+        homeWin: 63,
+
+        draw: 21,
+
+        awayWin: 16,
+
+        bttsYes: 62,
+
+        bttsNo: 38,
+
+        over15: 89,
+
+        under15: 11,
+
+        over25: 71,
+
+        under25: 29,
+
+        over35: 44,
+
+        under35: 56,
+
+        homeScore: 2.3,
+
+        awayScore: 1.1,
+
+        predictedScore: "3 – 1",
+
+        confidence: 84,
+
+        dataQuality: 93,
+
+        scores: [
+            ["3 – 1", 15],
+            ["2 – 1", 13],
+            ["2 – 0", 11],
+            ["3 – 0", 9],
+            ["2 – 2", 7]
+        ],
+
+        news: [
+            {
+                title: "Demo: Expected attacking XI available",
+                meta: "Example source • Demo timestamp"
+            }
+        ],
+
+        factors: {
+            attack: "Home",
+            defence: "Home",
+            form: "Home",
+            homeAway: "Home",
+            squad: "Home",
+            schedule: "Balanced"
+        }
+    },
+
+
+    {
+        id: 5,
+
+        country: "France",
+
+        league: "Ligue 1",
+
+        time: "21:00",
+
+        home: "PSG",
+
+        away: "Marseille",
+
+        homeShort: "PSG",
+
+        awayShort: "OM",
+
+        homeWin: 68,
+
+        draw: 19,
+
+        awayWin: 13,
+
+        bttsYes: 55,
+
+        bttsNo: 45,
+
+        over15: 86,
+
+        under15: 14,
+
+        over25: 66,
+
+        under25: 34,
+
+        over35: 37,
+
+        under35: 63,
+
+        homeScore: 2.4,
+
+        awayScore: 0.9,
+
+        predictedScore: "3 – 1",
+
+        confidence: 86,
+
+        dataQuality: 95,
+
+        scores: [
+            ["3 – 1", 16],
+            ["2 – 0", 14],
+            ["2 – 1", 12],
+            ["3 – 0", 11],
+            ["1 – 0", 7]
+        ],
+
+        news: [
+            {
+                title: "Demo: Squad status monitored",
+                meta: "Example source • Demo timestamp"
+            },
+            {
+                title: "Demo: Official XI not yet available",
+                meta: "Example source • Demo timestamp"
+            }
+        ],
+
+        factors: {
+            attack: "Home",
+            defence: "Home",
+            form: "Home",
+            homeAway: "Home",
+            squad: "Home",
+            schedule: "Home"
+        }
+    },
+
+
+    {
+        id: 6,
+
+        country: "Europe",
+
+        league: "UEFA Champions League",
+
+        time: "20:00",
+
+        home: "Barcelona",
+
+        away: "Bayern Munich",
+
+        homeShort: "BAR",
+
+        awayShort: "FCB",
+
+        homeWin: 41,
+
+        draw: 27,
+
+        awayWin: 32,
+
+        bttsYes: 67,
+
+        bttsNo: 33,
+
+        over15: 88,
+
+        under15: 12,
+
+        over25: 69,
+
+        under25: 31,
+
+        over35: 43,
+
+        under35: 57,
+
+        homeScore: 1.7,
+
+        awayScore: 1.6,
+
+        predictedScore: "2 – 2",
+
+        confidence: 62,
+
+        dataQuality: 89,
+
+        scores: [
+            ["2 – 2", 14],
+            ["2 – 1", 12],
+            ["1 – 2", 11],
+            ["1 – 1", 10],
+            ["3 – 2", 8]
+        ],
+
+        news: [
+            {
+                title: "Demo: European fixture — squad data monitored",
+                meta: "Example source • Demo timestamp"
+            }
+        ],
+
+        factors: {
+            attack: "Balanced",
+            defence: "Balanced",
+            form: "Balanced",
+            homeAway: "Home",
+            squad: "Balanced",
+            schedule: "Europe"
+        }
+    }
+
+];
+
+
+/* =========================================================
+   RENDER MATCHES
+   ========================================================= */
+
+function renderMatches(filter = "all") {
+
+    const container =
+        document.getElementById("matches-container");
+
+    const filtered =
+        filter === "all"
+            ? matches
+            : matches.filter(
+                match => match.country === filter
+            );
+
+    container.innerHTML = "";
+
+    filtered.forEach(match => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "match-card";
+
+        card.onclick = () =>
+            openAnalysis(match.id);
+
+        card.innerHTML = `
+
+            <div class="demo-label">
+                DEMO
+            </div>
+
+            <div class="league">
+                ${match.country} • ${match.league}
+            </div>
+
+            <div class="match-time">
+                ${match.time}
+            </div>
+
+            <div class="teams">
+
+                <div class="team">
+
+                    <div class="team-logo">
+                        ${match.homeShort}
+                    </div>
+
+                    <div class="team-name">
+                        ${match.home}
+                    </div>
+
+                </div>
+
+                <div class="vs">
+                    VS
+                </div>
+
+                <div class="team">
+
+                    <div class="team-logo">
+                        ${match.awayShort}
+                    </div>
+
+                    <div class="team-name">
+                        ${match.away}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="prediction-mini">
+
+                <div class="mini-box mini-home">
+                    <span>HOME</span>
+                    <strong>${match.homeWin}%</strong>
+                </div>
+
+                <div class="mini-box mini-draw">
+                    <span>DRAW</span>
+                    <strong>${match.draw}%</strong>
+                </div>
+
+                <div class="mini-box mini-away">
+                    <span>AWAY</span>
+                    <strong>${match.awayWin}%</strong>
+                </div>
+
+            </div>
+        `;
+
+        container.appendChild(card);
+
+    });
+}
+
+
+/* =========================================================
+   ANALYSIS
+   ========================================================= */
+
+function openAnalysis(id) {
+
+    const match =
+        matches.find(m => m.id === id);
+
+    if (!match) return;
+
+    document.getElementById("modal-title").textContent =
+        `${match.home} vs ${match.away}`;
+
+    document.getElementById("modal-subtitle").textContent =
+        `${match.country} • ${match.league} • DEMO DATA`;
+
+    const body =
+        document.getElementById("analysis-body");
+
+    body.innerHTML = `
+
+        <!-- MATCH HEADER -->
+
+        <div class="analysis-top">
+
+            <div class="big-team">
+
+                <div class="big-team-icon">
+                    ${match.homeShort}
+                </div>
+
+                <div class="big-team-name">
+                    ${match.home}
+                </div>
+
+            </div>
+
+
+            <div class="analysis-center">
+
+                <div class="analysis-time">
+                    ${match.time}
+                </div>
+
+                <div class="predicted-score">
+                    ${match.predictedScore}
+                </div>
+
+                <div
+                    style="
+                        color:var(--muted);
+                        font-size:10px;
+                        margin-top:6px;
+                    ">
+                    Most likely score
+                </div>
+
+            </div>
+
+
+            <div class="big-team">
+
+                <div class="big-team-icon">
+                    ${match.awayShort}
+                </div>
+
+                <div class="big-team-name">
+                    ${match.away}
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 1X2 -->
+
+        <div class="analysis-section">
+
+            <div class="analysis-section-title">
+                1X2 Match Result
+            </div>
+
+            <div class="probabilities">
+
+                ${probabilityRow(
+                    "Home Win",
+                    match.homeWin,
+                    "green"
+                )}
+
+                ${probabilityRow(
+                    "Draw",
+                    match.draw,
+                    "yellow"
+                )}
+
+                ${probabilityRow(
+                    "Away Win",
+                    match.awayWin,
+                    "red"
+                )}
+
+            </div>
+
+        </div>
+
+
+        <!-- DOUBLE CHANCE -->
+
+        <div class="analysis-section">
+
+            <div class="analysis-section-title">
+                Double Chance
+            </div>
+
+            <div class="stat-grid">
+
+                ${statCard(
+                    "1X",
+                    match.homeWin + match.draw,
+                    "Home / Draw"
+                )}
+
+                ${statCard(
+                    "X2",
+                    match.draw + match.awayWin,
+                    "Draw / Away"
+                )}
+
+                ${statCard(
+                    "12",
+                    match.homeWin + match.awayWin,
+                    "Home / Away"
+                )}
+
+            </div>
+
+        </div>
+
+
+        <!-- GOALS -->
+
+        <div class="analysis-section">
+
+            <div class="analysis-section-title">
+                Goals — Over / Under
+            </div>
+
+            <div class="stat-grid">
+
+                ${statCard(
+                    "O 1.5",
+                    match.over15 + "%",
+                    "Goals"
+                )}
+
+                ${statCard(
+                    "U 1.5",
+                    match.under15 + "%",
+                    "Goals"
+                )}
+
+                ${statCard(
+                    "O 2.5",
+                    match.over25 + "%",
+                    "Goals"
+                )}
+
+                ${statCard(
+                    "U 2.5",
+                    match.under25 + "%",
+                    "Goals"
+                )}
+
+                ${statCard(
+                    "O 3.5",
+                    match.over35 + "%",
+                    "Goals"
+                )}
+
+                ${statCard(
+                    "U 3.5",
+                    match.under35 + "%",
+                    "Goals"
+                )}
+
+            </div>
+
+        </div>
+
+
+        <!-- BTTS -->
+
+        <div class="analysis-section">
+
+            <div class="analysis-section-title">
+                Both Teams To Score
+            </div>
+
+            <div class="stat-grid">
+
+                ${statCard(
+                    "YES",
+                    match.bttsYes + "%",
+                    "BTTS"
+                )}
+
+                ${statCard(
+                    "NO",
+                    match.bttsNo + "%",
+                    "BTTS"
+                )}
+
+                ${statCard(
+                    match.home,
+                    Math.round(
+                        100 -
+                        poissonZeroProbability(
+                            match.homeScore
+                        )
+                    ) + "%",
+                    "To score"
+                )}
+
+            </div>
+
+        </div>
+
+
+        <!-- TEAM GOALS -->
+
+        <div class="analysis-section">
+
+            <div class="analysis-section-title">
+                Expected Team Goals
+            </div>
+
+            <div class="two-column">
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span>${match.home}</span>
+                        <strong>
+                            ${match.homeScore.toFixed(2)}
+                        </strong>
+                    </div>
+
+                    <div class="info-row">
+                        <span>To Score</span>
+                        <strong class="good">
+                            ${Math.round(
+                                100 -
+                                poissonZeroProbability(
+                                    match.homeScore
+                                )
+                            )}%
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <span>${match.away}</span>
+                        <strong>
+                            ${match.awayScore.toFixed(2)}
+                        </strong>
+                    </div>
+
+                    <div class="info-row">
+                        <span>To Score</span>
+                        <strong class="good">
+                            ${Math.round(
+                                100 -
+                                poissonZeroProbability(
+                                    match.awayScore
+                                )
+                            )}%
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CORRECT SCORE -->
+
+        <div class="analysis-section">
+
+            <div class="analysis-section-title">
+                Most Likely Correct Scores
+            </div>
+
+            <div class="score-grid">
+
+                ${match.scores.map(
+                    score => `
+
+                        <div class="score-box">
+
+                            <strong>
+                                ${score[0]}
+                            </strong>
+
+                            <span>
+                                ${score[1]}%
+                            </span>
+
+                        </div>
+
+                    `
+                ).join("")}
+
+            </div>
+
+        </div>
+
+
+        <!-- ADVANTAGE -->
+
+        <div class="analysis-section">
+
+            <div class="analysis-section-title">
+                Team Advantage Breakdown
+            </div>
+
+            <div class="info-box">
+
+                ${factorRow(
+                    "Attack",
+                    match.factors.attack
+                )}
+
+                ${factorRow(
+                    "Defence",
+                    match.factors.defence
+                )}
+
+                ${factorRow(
+                    "Form",
+                    match.factors.form
+                )}
+
+                ${factorRow(
+                    "Home / Away",
+                    match.factors.homeAway
+                )}
+
+                ${factorRow(
+                    "Squad",
+                    match.factors.squad
+                )}
+
+                ${factorRow(
+                    "Schedule",
+                    match.factors.schedule
+                )}
+
+            </div>
+
+        </div>
+
+
+        <!-- NEWS -->
+
+        <div class="analysis-section">
+
+            <div class="analysis-section-title">
+                Team News & Availability
+            </div>
+
+            <div class="news-list">
+
+                ${match.news.map(
+                    news => `
+
+                        <div class="news-item">
+
+                            <strong>
+                                ${news.title}
+                            </strong>
+
+                            <div class="news-meta">
+                                ${news.meta}
+                            </div>
+
+                        </div>
+
+                    `
+                ).join("")}
+
+            </div>
+
+        </div>
+
+
+        <!-- MODEL STATUS -->
+
+        <div class="analysis-section">
+
+            <div class="analysis-section-title">
+                X10THINK Model Status
+            </div>
+
+            <div class="stat-grid">
+
+                ${statCard(
+                    "Data Quality",
+                    match.dataQuality + "%",
+                    "Input completeness"
+                )}
+
+                ${statCard(
+                    "AI Confidence",
+                    match.confidence + "%",
+                    "Model stability"
+                )}
+
+                ${statCard(
+                    "Model State",
+                    "DEMO",
+                    "Live engine not connected"
+                )}
+
+            </div>
+
+        </div>
+
+
+        <div
+            style="
+                margin-top:20px;
+                padding:14px;
+                border-radius:12px;
+                background:var(--yellow-soft);
+                border:1px solid rgba(255,200,87,0.18);
+                color:var(--yellow);
+                font-size:10px;
+                line-height:1.6;
+            ">
+
+            ⚠ DEMO DATA:
+            These probabilities are demonstration values only.
+            They are not generated from a live football API and
+            must not be treated as real match predictions.
+
+        </div>
+
+    `;
+
+    document
+        .getElementById("analysis-modal")
+        .classList.add("show");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+/* =========================================================
+   HELPER FUNCTIONS
+   ========================================================= */
+
+function probabilityRow(label, value, color) {
+
+    return `
+
+        <div class="prob-row">
+
+            <div class="prob-label">
+                ${label}
+            </div>
+
+            <div class="prob-track">
+
+                <div
+                    class="prob-fill fill-${color}"
+                    style="width:${value}%">
+                </div>
+
+            </div>
+
+            <div class="prob-value">
+                ${value}%
+            </div>
+
+        </div>
+    `;
+}
+
+
+function statCard(title, value, subtitle) {
+
+    return `
+
+        <div class="stat-card">
+
+            <div class="stat-card-title">
+                ${title}
+            </div>
+
+            <div class="stat-card-value">
+                ${value}
+            </div>
+
+            <div class="stat-card-small">
+                ${subtitle}
+            </div>
+
+        </div>
+    `;
+}
+
+
+function factorRow(label, value) {
+
+    let className = "";
+
+    if (
+        value === "Home" ||
+        value === "Away"
+    ) {
+        className = "good";
+    }
+
+    return `
+
+        <div class="info-row">
+
+            <span>
+                ${label}
+            </span>
+
+            <strong class="${className}">
+                ${value}
+            </strong>
+
+        </div>
+    `;
+}
+
+
+function poissonZeroProbability(lambda) {
+
+    return Math.exp(-lambda) * 100;
+}
+
+
+/* =========================================================
+   MODAL CONTROL
+   ========================================================= */
+
+function closeModal() {
+
+    document
+        .getElementById("analysis-modal")
+        .classList.remove("show");
+
+    document.body.style.overflow = "";
+}
+
+
+document
+    .getElementById("analysis-modal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+                closeModal();
+            }
+
+        }
+    );
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+            closeModal();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FILTER SYSTEM
+   ========================================================= */
+
+document
+    .querySelectorAll(".filter")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                document
+                    .querySelectorAll(".filter")
+                    .forEach(btn =>
+                        btn.classList.remove("active")
+                    );
+
+                this.classList.add("active");
+
+                renderMatches(
+                    this.dataset.filter
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   PAGE ACTIONS
+   ========================================================= */
+
+function scrollToMatches() {
+
+    document
+        .getElementById("matches-section")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}
+
+
+function showSystemInfo() {
+
+    alert(
+        "X10THINK SPORTS AI\n\n" +
+
+        "Planned prediction architecture:\n\n" +
+
+        "• Elo / Team Strength\n" +
+        "• xG / xGA\n" +
+        "• Poisson Goal Model\n" +
+        "• Machine Learning\n" +
+        "• Player Impact\n" +
+        "• Lineup Analysis\n" +
+        "• Form & Home/Away\n" +
+        "• Schedule & Fatigue\n" +
+        "• News Intelligence AI\n" +
+        "• Consensus Engine\n" +
+        "• Probability Calibration\n\n" +
+
+        "Current version: DEMO FRONT-END"
+    );
+}
+
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+renderMatches("all");
+
+
+/* =========================================================
+   FUTURE DATA API HOOK
+
+   Later we will replace DEMO data with something similar to:
+
+   async function loadLiveMatches() {
+
+       const response =
+           await fetch("/api/matches");
+
+       const liveData =
+           await response.json();
+
+       // Validate data
+       // Update Team State
+       // Run prediction engine
+       // Render results
+
+   }
+
+   API KEYS MUST NEVER BE PLACED IN THIS FILE.
+   ========================================================= */
+
+</script>
+
+</body>
+</html>
